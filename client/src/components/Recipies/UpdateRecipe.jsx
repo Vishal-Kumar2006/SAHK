@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -131,7 +131,7 @@ const UpdateRecipe = () => {
     e.preventDefault();
     console.log(recipeData);
     try {
-      await axios.post("http://localhost:5000/recipes/new", recipeData);
+      await axios.post("https://sahk.onrender.com/recipes/new", recipeData);
       alert("Recipe created successfully!");
       navigate("/recipes");
     } catch (err) {

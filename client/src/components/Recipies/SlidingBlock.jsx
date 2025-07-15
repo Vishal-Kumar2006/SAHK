@@ -19,7 +19,7 @@ const SlidingBlocks = ({ data = [], type }) => {
   const handleClick = async (filterType) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/recipes/filter/${type}`,
+        `https://sahk.onrender.com/recipes/filter/${type}`,
         {
           params: { filterType },
         }

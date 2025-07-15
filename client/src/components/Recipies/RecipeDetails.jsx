@@ -12,7 +12,7 @@ const RecipeDetails = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/recipes/${id}`);
+        const response = await axios.get(`https://sahk.onrender.com/recipes/${id}`);
         setRecipe(response.data);
       } catch (error) {
         console.error("Error fetching recipe:", error.message);
@@ -28,7 +28,7 @@ const RecipeDetails = () => {
 
   const deleteRecipe = () => {
     try{
-      axios.delete(`http://localhost:5000/recipes/${recipe._id}/delete`)
+      axios.delete(`https://sahk.onrender.com/recipes/${recipe._id}/delete`)
       .then((response) => {
         alert(response.data.message);
         navigate("/recipes");

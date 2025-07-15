@@ -7,7 +7,7 @@ const AllRecipes = ({ recipe }) => {
   const [listOfRecipe, setListOfRecipe] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/recipes").then((response) => {
+    axios.get("https://sahk.onrender.com/recipes").then((response) => {
       setListOfRecipe(response.data);
     });
   }, []);

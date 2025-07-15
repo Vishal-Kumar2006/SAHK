@@ -19,12 +19,13 @@ const Profile = () => {
 
   const handleLogout = () => {
     axios
-    .get("http://localhost:5000/user/logout", { withCredentials: true })
-    .then((response) => {
-      console.log(response)
-    }).catch((error) => {
-      console.log(error);
-    })
+      .get("https://sahk.onrender.com/user/logout", { withCredentials: true })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -32,7 +33,7 @@ const Profile = () => {
       {user ? (
         <div className="user-info">
           <h4>Welcome to Profile Page</h4>
-          <img src={user.image} alt="User Image" id="user-Image"/>
+          <img src={user.image} alt="User Image" id="user-Image" />
           <h3 id="user-name">{user.name}</h3>
           <button onClick={handleLogout}>Log Out</button>
         </div>

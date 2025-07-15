@@ -48,17 +48,17 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/user/sign-up",
+        "https://sahk.onrender.com/user/sign-up",
         userData,
         { withCredentials: true }
       );
 
       console.log(response.data);
       alert("User Created and Logged In Successfully.");
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
-      
+
       if (error.response && error.response.status === 409) {
         alert("User already exists with this email.");
       } else if (error.response && error.response.status === 428) {
@@ -124,7 +124,7 @@ const SignUp = () => {
           autoComplete="password"
         />
 
-        <button type="submit" >Craete New Account</button>
+        <button type="submit">Craete New Account</button>
       </form>
 
       <button onClick={logInRedirect}> Have an Account </button>

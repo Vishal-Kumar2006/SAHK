@@ -132,7 +132,7 @@ const RecipeForm = () => {
     e.preventDefault();
     console.log(recipeData);
     try {
-      await axios.post("http://localhost:5000/recipes/new", recipeData);
+      await axios.post("https://sahk.onrender.com/recipes/new", recipeData);
       alert("Recipe created successfully!");
       navigate("/recipes");
     } catch (err) {
@@ -162,7 +162,10 @@ const RecipeForm = () => {
               onChange={(e) => handleInstructionChange(index, e.target.value)}
               className="recipe-input"
             />
-            <MdDeleteOutline className="step-delete-btn" onClick={(e) => handleDeleteInput(index)} />
+            <MdDeleteOutline
+              className="step-delete-btn"
+              onClick={(e) => handleDeleteInput(index)}
+            />
             {/* <button type="button">
               <MdDeleteOutline />
             </button> */}
