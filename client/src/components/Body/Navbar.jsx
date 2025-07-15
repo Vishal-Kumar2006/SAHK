@@ -1,24 +1,48 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { IoMenu, IoCloseSharp } from "react-icons/io5";
 import "./Navbar.css";
-import { isCookie } from "react-router-dom";
 
 const Navbar = () => {
   const [menubtn, setMenuBtn] = useState(true);
-  const [user, setUser] = useState(null); // store user info if logged in
+  const [user, setUser] = useState(() => {
+    // Load user from localStorage on initial render
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   useEffect(() => {
-    // Check login status on mount
+    // Only call API if user is not in localStorage
+    if (!user) {
+      axios
+        .get("https://sahk.onrender.com/user/profile", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setUser(res.data.user);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        })
+        .catch(() => {
+          setUser(null);
+          localStorage.removeItem("user");
+        });
+    }
+  }, [user]);
+
+  const handleLogout = () => {
     axios
-      .get("https://sahk.onrender.com/user/profile", { withCredentials: true })
-      .then((res) => {
-        setUser(res.data.user); // user is logged in
+      .post(
+        "https://sahk.onrender.com/user/logout",
+        {},
+        { withCredentials: true }
+      )
+      .then(() => {
+        setUser(null);
+        localStorage.removeItem("user");
       })
-      .catch((err) => {
-        setUser(null); // not logged in
-      });
-  }, []);
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="Navbar">
@@ -34,31 +58,36 @@ const Navbar = () => {
       </button>
       <div className={`options ${!menubtn ? "open" : ""}`}>
         <div className="links">
-          <a href="/" onClick={() => setMenuBtn(!menubtn)}>
+          <Link to="/" onClick={() => setMenuBtn(!menubtn)}>
             Home
-          </a>
-          <a href="/recipes" onClick={() => setMenuBtn(!menubtn)}>
-            All Recipies
-          </a>
-          <a href="/fast-food" onClick={() => setMenuBtn(!menubtn)}>
+          </Link>
+          <Link to="/recipes" onClick={() => setMenuBtn(!menubtn)}>
+            All Recipes
+          </Link>
+          <Link to="/fast-food" onClick={() => setMenuBtn(!menubtn)}>
             Fast Food
-          </a>
-          <a href="/freash-food" onClick={() => setMenuBtn(!menubtn)}>
+          </Link>
+          <Link to="/fresh-food" onClick={() => setMenuBtn(!menubtn)}>
             Fresh Food
-          </a>
-          <a href="/recipes/new" onClick={() => setMenuBtn(!menubtn)}>
+          </Link>
+          <Link to="/recipes/new" onClick={() => setMenuBtn(!menubtn)}>
             Create Recipe
-          </a>
+          </Link>
         </div>
         <div className="user">
           {user ? (
-            <a href="/user/profile" onClick={() => setMenuBtn(!menubtn)}>
-              <img src={user.image} alt="User Image" className="user-image" />
-            </a>
+            <>
+              <Link to="/user/profile" onClick={() => setMenuBtn(!menubtn)}>
+                <img src={user.image} alt="User" className="user-image" />
+              </Link>
+              <button onClick={handleLogout} className="logout-btn">
+                Logout
+              </button>
+            </>
           ) : (
-            <a href="/user/login" onClick={() => setMenuBtn(!menubtn)}>
+            <Link to="/user/login" onClick={() => setMenuBtn(!menubtn)}>
               Login
-            </a>
+            </Link>
           )}
         </div>
       </div>
