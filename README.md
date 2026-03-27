@@ -6,7 +6,7 @@ A MERN Stack Recipe-Sharing Platform for Food Lovers
 
 🔗 GitHub Repository
 
-📂 View Source Code on GitHub
+📂 View Source Code on GitHub: https://github.com/Vishal-Kumar2006/SAHK
 
 ✨ Latest Updates
 
@@ -34,7 +34,7 @@ Other Tools: Axios, REST API
 
 Clone the Repository
 
-git clone https://github.com/yourusername/SAHK.git  
+git clone https://github.com/Vishal-Kumar2006/SAHK.git  
 cd SAHK  
 Install Dependencies
 
