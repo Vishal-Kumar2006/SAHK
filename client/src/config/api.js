@@ -1,0 +1,20 @@
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+
+const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_FOLDER = import.meta.env.VITE_CLOUDINARY_FOLDER;
+
+if (!API_URL) {
+  throw new Error("VITE_BACKEND_API_URL is not defined");
+}
+
+if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET || !CLOUDINARY_FOLDER) {
+  throw new Error("Cloudinary URL's Nnot Working");
+}
+
+export {
+  API_URL,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_UPLOAD_PRESET,
+  CLOUDINARY_FOLDER,
+};

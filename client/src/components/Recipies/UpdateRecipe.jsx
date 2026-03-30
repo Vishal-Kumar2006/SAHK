@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { API_URL } from "../../config/api.js";
 import "./RecipeForm.css";
 
 const CLOUDINARY_CLOUD_NAME = "dhj0i3rr1";
@@ -75,8 +76,8 @@ const UpdateRecipe = () => {
         type === "checkbox"
           ? checked
           : name === "cost" || name === "cookingTime"
-          ? Number(value)
-          : value,
+            ? Number(value)
+            : value,
     }));
   };
 
@@ -92,7 +93,7 @@ const UpdateRecipe = () => {
   // Delete a specific input
   const handleDeleteInput = (index) => {
     const newInstructions = recipeData.instructions.filter(
-      (_, i) => i !== index
+      (_, i) => i !== index,
     );
     setRecipeData((prev) => ({
       ...prev,
@@ -119,7 +120,7 @@ const UpdateRecipe = () => {
     try {
       const res = await axios.post(
         `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-        formData
+        formData,
       );
       setRecipeData((prev) => ({ ...prev, image: res.data.secure_url }));
     } catch (err) {
@@ -131,7 +132,7 @@ const UpdateRecipe = () => {
     e.preventDefault();
     console.log(recipeData);
     try {
-      await axios.post("https://sahk.onrender.com/recipes/new", recipeData);
+      await axios.post(`${API_URL}/recipes/new`, recipeData);
       alert("Recipe created successfully!");
       navigate("/recipes");
     } catch (err) {
@@ -187,7 +188,7 @@ const UpdateRecipe = () => {
           components={animatedComponents}
           options={ingredientOptions}
           value={ingredientOptions.filter((opt) =>
-            recipeData.ingredients.includes(opt.value)
+            recipeData.ingredients.includes(opt.value),
           )}
           onChange={(selected) =>
             setRecipeData((prev) => ({
@@ -213,8 +214,7 @@ const UpdateRecipe = () => {
               name="mealType"
               className="recipe-input"
               onChange={handleInputChange}
-              value={recipeData.mealType}
-            >
+              value={recipeData.mealType}>
               {meals.map((meal) => (
                 <option key={meal} value={meal}>
                   {meal}
@@ -228,8 +228,7 @@ const UpdateRecipe = () => {
               name="foodType"
               className="recipe-input"
               onChange={handleInputChange}
-              value={recipeData.foodType}
-            >
+              value={recipeData.foodType}>
               {foodTypes.map((type) => (
                 <option key={type} value={type}>
                   {type}
@@ -246,8 +245,7 @@ const UpdateRecipe = () => {
               name="cookingMethod"
               className="recipe-input"
               onChange={handleInputChange}
-              value={recipeData.cookingMethod}
-            >
+              value={recipeData.cookingMethod}>
               {cookingMethods.map((method) => (
                 <option key={method} value={method}>
                   {method}
@@ -262,8 +260,7 @@ const UpdateRecipe = () => {
               name="cookingTime"
               className="recipe-input"
               onChange={handleInputChange}
-              value={recipeData.cookingTime}
-            >
+              value={recipeData.cookingTime}>
               {cookingTimes.map((time) => (
                 <option key={time.value} value={time.value}>
                   {time.label}

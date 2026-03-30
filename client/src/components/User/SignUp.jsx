@@ -1,13 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { API_URL } from "../../config/api.js";
+import { useAuth } from "../../context/AuthProvider.jsx";
 import axios from "axios";
+
 import "./Login.css";
 
-const CLOUDINARY_CLOUD_NAME = "dhj0i3rr1";
-const CLOUDINARY_UPLOAD_PRESET = "SAHK-Project";
-const CLOUDINARY_FOLDER = "SAHK";
+const backend_URL = import.meta.env.VITE_Backend_URL;
+const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_FOLDER = import.meta.env.VITE_CLOUDINARY_FOLDER;
 
 const SignUp = () => {
+  const { user, setUser } = useAuth();
   const [userData, setUserData] = useState({
     name: "",
     image:
@@ -29,7 +34,8 @@ const SignUp = () => {
       try {
         const res = await axios.post(
           `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-          formData
+          formData,
+          { withCredentials: false },
         );
         setUserData((prev) => ({ ...prev, image: res.data.secure_url }));
       } catch (err) {
@@ -44,18 +50,15 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
 
     try {
-      const response = await axios.post(
-        "https://sahk.onrender.com/user/sign-up",
-        userData,
-        { withCredentials: true }
-      );
+      const response = await axios.post(`${API_URL}/user/sign-up`, userData, {
+        withCredentials: true,
+      });
 
-      console.log(response.data);
+      setUser(response.data.user);
       alert("User Created and Logged In Successfully.");
-      navigate("/");
+      navigate("/user/profile");
     } catch (error) {
       console.error("Error:", error);
 
@@ -89,7 +92,7 @@ const SignUp = () => {
           autoComplete="name"
         />
 
-        <label htmlFor="image">Enter Image Link</label>
+        <label htmlFor="image">Chose your Image</label>
         <input
           type="file"
           name="image"

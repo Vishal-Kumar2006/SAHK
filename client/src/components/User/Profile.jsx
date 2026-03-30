@@ -1,27 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config/api.js";
+import { useAuth } from "../../context/AuthProvider.jsx";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 const Profile = () => {
-  const [user, setUser] = useState();
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/user/profile", { withCredentials: true })
-      .then((response) => {
-        setUser(response.data.user);
-      })
-      .catch((error) => {
-        console.log("error Found");
-        console.log(error);
-      });
+    if (!user) {
+      navigate("/user/login");
+    }
   }, []);
 
   const handleLogout = () => {
     axios
-      .get("https://sahk.onrender.com/user/logout", { withCredentials: true })
+      .get(`${API_URL}/user/logout`, { withCredentials: true })
       .then((response) => {
-        console.log(response);
+        setUser(null);
+        navigate("/user/login");
       })
       .catch((error) => {
         console.log(error);

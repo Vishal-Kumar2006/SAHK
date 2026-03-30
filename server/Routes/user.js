@@ -13,9 +13,8 @@ const {
 router.post("/sign-up", signUpController);
 router.post("/log-in", loginController);
 
-// Profile and Logout will add tomorow
+// Check if Login Profile and Logout will add tomorow
 router.get("/profile", verifyAccessToken, getProfileController);
-
 router.get("/logout", verifyAccessToken, logoutController);
 
 module.exports = router;

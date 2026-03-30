@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import { API_URL } from "../../config/api.js";
+import { useAuth } from "../../context/AuthProvider.jsx";
 import axios from "axios";
+import "./Login.css";
 
 const Login = () => {
+  const { user, setUser } = useAuth();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,24 +21,15 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
 
     try {
-      const response = await axios
-        .post("https://sahk.onrender.com/user/log-in", userData, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          localStorage.setItem("token", JSON.stringify(res.data.user));
-        })
-        .catch(() => {
-          setUser(null);
-          localStorage.removeItem("user");
-        });
+      const response = await axios.post(`${API_URL}/user/log-in`, userData, {
+        withCredentials: true,
+      });
 
-      console.log(response);
+      setUser(response.data.user);
       alert("User logged In sucessfully.");
-      navigate("/");
+      navigate("/user/profile");
     } catch (error) {
       console.log("error", error);
       if (error.response && error.response.status === 404) {
