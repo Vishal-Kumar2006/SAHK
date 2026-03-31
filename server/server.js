@@ -18,10 +18,10 @@ app.use(express.json());
 app.use(
   cors({
     // For Testing using LocalHost
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
 
     // For/after deployment
-    // origin: "https://your-frontend-url.vercel.app",
+    origin: "https://sahk-frontend.onrender.com/",
 
     credentials: true,
   }),
