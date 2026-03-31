@@ -12,7 +12,7 @@ and designed to celebrate the art of cooking with love. ❤️
 <hr/>
 <h2>🔗 LiveDemo</h2>
 <p>
-📂 <a href="https://sahkSy-frontend.onrender.com" target="">
+📂 <a href="https://sahk-frontend.onrender.com" target="">
 Live Demo
 </a>
 
