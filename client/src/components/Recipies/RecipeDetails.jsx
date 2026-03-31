@@ -23,10 +23,6 @@ const RecipeDetails = () => {
     fetchRecipe();
   }, [id]);
 
-  const handleUpdate = () => {
-    navigate(`/recipe/${recipe._id}/update`);
-  };
-
   const deleteRecipe = () => {
     try {
       axios
@@ -49,16 +45,13 @@ const RecipeDetails = () => {
       <div className="recipe-deatil-info">
         <strong>Instructions:</strong>
         <ul>
-          {" "}
           {recipe.instructions.map((ing, idx) => (
             <li key={idx}>
-              {" "}
               <b>Step {idx + 1} : </b> {ing}
             </li>
           ))}
         </ul>
         <p>
-          {" "}
           <strong>Cost Per Plate:</strong> ₹{recipe.cost}{" "}
         </p>
 
@@ -74,15 +67,12 @@ const RecipeDetails = () => {
           <strong>Cooking Time:</strong> {recipe.cookingTime} min
         </p>
         <p>
-          {" "}
           <strong>Meal Type:</strong> {recipe.mealType}{" "}
         </p>
         <p>
-          {" "}
           <strong>Cooking Method:</strong> {recipe.cookingMethod}{" "}
         </p>
         <p>
-          {" "}
           <strong>Food Type:</strong> {recipe.foodType}{" "}
         </p>
         <p className="recipe-detail-date">
@@ -90,7 +80,6 @@ const RecipeDetails = () => {
         </p>
       </div>
       <div className="recipe-btns">
-        <button onClick={handleUpdate}>Update Recipe</button>
         <button onClick={deleteRecipe}>Delete Recipe</button>
       </div>
     </div>

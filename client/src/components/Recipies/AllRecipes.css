@@ -1,28 +1,26 @@
 .AllRecipies {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
-  
 
 .recipe:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-@media screen and (max-width:820px) {
-    .AllRecipies {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
+@media screen and (max-width: 820px) {
+  .AllRecipies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 }
 
-@media screen and (max-width:450px) {
-    .AllRecipies {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1rem;
-    }
+@media screen and (max-width: 480px) {
+  .AllRecipies {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    padding: 0rem;
+  }
 }
-
-  

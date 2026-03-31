@@ -124,6 +124,7 @@ const RecipeForm = () => {
       const res = await axios.post(
         `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
         formData,
+        { withCredentials: false },
       );
       setRecipeData((prev) => ({ ...prev, image: res.data.secure_url }));
     } catch (err) {
@@ -133,11 +134,11 @@ const RecipeForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(recipeData);
     try {
-      await axios.post(`${API_URL}/recipes/new`, recipeData);
+      const response = await axios.post(`${API_URL}/recipes/new`, recipeData);
+      console.log();
       alert("Recipe created successfully!");
-      navigate("/recipes");
+      navigate(`/recipes/${response.data._id}`);
     } catch (err) {
       alert("Error: " + err.message);
     }
@@ -175,7 +176,7 @@ const RecipeForm = () => {
           </div>
         ))}
         <button type="button" onClick={handleAddInstruction}>
-          ➕ Add Step
+          + Add Step
         </button>
 
         <label>Recipe Image</label>

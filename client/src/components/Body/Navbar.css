@@ -11,7 +11,6 @@
   top: 0;
   box-shadow: 0 0 2rem rgb(0, 0, 0);
   z-index: 100;
-  /* padding: 0.1rem; */
 }
 
 .menu-btn {
@@ -60,7 +59,7 @@
 }
 
 .user-image {
-  height: 2rem;
+  height: 3rem;
   padding: 0;
   margin: 0;
   border-radius: 50%;
@@ -73,16 +72,16 @@
   font-size: 1.5rem;
   text-decoration: none;
   color: rgb(138, 138, 138);
-  padding: 1rem;
+  padding: 0.5rem;
   transition: 0.2s;
 }
 
 .user a:hover {
   cursor: pointer;
   color: rgb(255, 255, 255);
-  background-color: #0062ffbe;
+  background-color: none;
   font-size: 1.5rem;
-  box-shadow: 0 0 10px rgb(72, 72, 255);
+  /* box-shadow: 0 0 10px rgb(72, 72, 255); */
 }
 
 @media screen and (max-width: 820px) {
