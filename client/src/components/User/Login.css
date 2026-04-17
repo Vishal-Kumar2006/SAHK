@@ -8,7 +8,7 @@
   margin: 5rem;
   margin-left: 15%;
   padding: 0;
-  background-color: #ff0000;
+  background-color: #ff000097;
   border-radius: 1rem;
   box-shadow: 0 0 5rem red;
 }
@@ -23,7 +23,7 @@
   margin: 5rem;
   margin-left: 15%;
   padding: 0;
-  background-color: #ff0000;
+  background-color: #ff000097;
   border-radius: 1rem;
   box-shadow: 0 0 5rem red;
 }
@@ -61,19 +61,20 @@ form label {
   font-size: 1.5rem;
   text-decoration: solid;
   font-weight: bold;
-  color: rgb(223, 223, 223);
+  color: rgb(255, 255, 255);
 }
 
 .input {
-  font-size: 1.5rem;
+  font-size: 1rem;
   width: 100%;
-  padding: 0.4rem;
+  padding: 0.6rem;
   background-color: #ffffff;
   box-shadow: 0 0 0.5rem rgb(67, 0, 0);
   color: rgb(45, 0, 0);
   margin-bottom: 2rem;
   border: none;
   border-radius: 5px;
+  outline: none;
 }
 
 form button {
@@ -83,12 +84,12 @@ form button {
 button {
   color: rgb(255, 255, 255);
   background-color: #2b0000;
-  font-size: 2rem;
+  font-size: 1.2rem;
   margin: 2rem;
-  padding: 0.2rem 1rem;
+  padding: 0.8rem 1.2rem;
   border: none;
   border-radius: 0.3rem;
-  transition: 0.2s;
+  transition: linear 0.3s;
 }
 
 button:hover {
@@ -146,12 +147,39 @@ button:hover {
 }
 
 @media screen and (max-width: 440px) {
+  .Login {
+    width: 90%;
+    margin: 5rem 1rem;
+    padding: 0;
+  }
+
+  .SignUp {
+    width: 90%;
+    margin: 5rem 1rem;
+    padding: 0;
+  }
+
+  form {
+    margin-top: 3rem;
+    width: 85%;
+  }
   .Login h3 {
     font-size: 1.5rem;
   }
 
   .SignUp h3 {
     font-size: 1.2rem;
+  }
+
+  form label {
+    font-size: 1.2rem;
+    margin-left: 1rem;
+  }
+
+  .input {
+    font-size: 0.9rem;
+    width: 90%;
+    padding: 0.8rem;
   }
 
   button {
