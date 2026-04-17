@@ -14,15 +14,20 @@ const PORT = process.env.PORT || 5000;
 // Allowed Json Data from Backend
 app.use(express.json());
 
-// Whitelist (allowed-access) from origin for frontend
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://sahk-frontend.onrender.com",
+];
+
 app.use(
   cors({
-    // For Testing using LocalHost
-    // origin: "http://localhost:5173",
-
-    // For/after deployment
-    origin: "https://sahk-frontend.onrender.com",
-
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );

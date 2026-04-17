@@ -8,16 +8,6 @@ import CookingTime from "./CookingTime";
 import CostRecepies from "./CostRecipes";
 
 const Home = () => {
-  const scrollRef = useRef();
-
-  const scrollLeft = () => {
-    scrollRef.current.scrollLeft -= 400;
-  };
-
-  const scrollRight = () => {
-    scrollRef.current.scrollLeft += 400;
-  };
-
   return (
     <div className="Home">
       <div className="Recipe-search-home">
@@ -25,11 +15,21 @@ const Home = () => {
         <button>Search</button>
       </div>
 
-      <div className="home-types"> <MealType/> </div>
-      <div className="home-types"> <FoodType /> </div>
-      <div className="home-types"> <CookingMethod/>  </div>
-      <div className="home-types"> <CostRecepies/> </div>
-      <div className="home-types"> <CookingTime/> </div>
+      <div className="home-types">
+        <MealType />
+      </div>
+      <div className="home-types">
+        <FoodType />
+      </div>
+      <div className="home-types">
+        <CookingMethod />
+      </div>
+      <div className="home-types">
+        <CostRecepies />
+      </div>
+      <div className="home-types">
+        <CookingTime />
+      </div>
     </div>
   );
 };

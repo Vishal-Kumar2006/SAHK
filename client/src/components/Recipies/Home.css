@@ -33,11 +33,13 @@
 }
 
 .home-types {
-  margin-top: 8rem;
-  margin-bottom: 8rem;
+  margin: 8rem 0;
 }
 
 @media screen and (max-width: 820px) {
+  .Home {
+    padding: 1rem;
+  }
   .Recipe-search-home {
     width: 100%;
     padding: 0rem;
@@ -60,6 +62,9 @@
 }
 
 @media screen and (max-width: 420px) {
+  .Home {
+    padding: 0.4rem;
+  }
   .Recipe-search-home {
     width: 100%;
     padding: 0rem;
